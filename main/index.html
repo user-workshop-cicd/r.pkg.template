@@ -31,7 +31,7 @@
     
     <a class="navbar-brand me-2" href="index.html">r.pkg.template</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9068</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9069</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,12 +52,6 @@
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" href="https://insightsengineering.github.io/r.pkg.template/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -122,13 +116,14 @@
 <h3 id="cicd-configurations">CI/CD Configurations<a class="anchor" aria-label="anchor" href="#cicd-configurations"></a>
 </h3>
 <p>All CI/CD jobs are defined in the <a href="./.github/workflows">.github/workflows</a> directory in the form of GitHub Action workflows. These can be modified per your requirements, but are designed and implemented to follow best practices and to ensure the highest quality standards for your package.</p>
-<p>All workflows originating from this repository can be repurposed by other R package Github repositories.</p>
+<p>All workflows originating from this repository can be repurposed by other R package GitHub repositories.</p>
+<p>For more information including detailed description and screenshots of workflows, please refer to <a href="./workflows.html">Workflows</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="pre-commit">Pre-commit<a class="anchor" aria-label="anchor" href="#pre-commit"></a>
 </h3>
 <p>This repository contains an example <a href="https://pre-commit.com" class="external-link">pre-commit</a> configuration.</p>
-<p><a href="https://pre-commit.com" class="external-link">pre-commit</a> is a tool that uses <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" class="external-link">Git hooks</a> to identify and resolve simple issues prior to submission for code review. <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" class="external-link">Git hooks</a> run on every commit to automatically point out and solve issues such as missing semicolons, trailing whitespaces, code formatting and spell checks.</p>
+<p><a href="https://pre-commit.com" class="external-link">pre-commit</a> is a tool that uses <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" class="external-link">Git hooks</a> to identify and resolve simple issues before submission for code review. <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" class="external-link">Git hooks</a> run on every commit to automatically point out and solve issues such as missing semicolons, trailing whitespaces, code formatting and spell checks.</p>
 </div>
 <div class="section level3">
 <h3 id="setting-up-pre-commit-for-r-project">Setting up pre-commit for R project<a class="anchor" aria-label="anchor" href="#setting-up-pre-commit-for-r-project"></a>
