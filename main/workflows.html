@@ -15,7 +15,7 @@
     
     <a class="navbar-brand me-2" href="index.html">r.pkg.template</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9069</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9070</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,12 +35,6 @@
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/r.pkg.template/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -75,19 +69,19 @@
 </div>
 <div class="section level2">
 <h2 id="build-check-installyaml"><a href="./.github/workflows/build-check-install.yaml"><code>build-check-install.yaml</code></a><a class="anchor" aria-label="anchor" href="#build-check-installyaml"></a></h2>
-<p>This workflow:</p>
-<ul><li>builds R package,</li>
-<li>runs <code>R CMD check</code>,</li>
-<li>publishes unit test summary,</li>
-<li>catches any notes, warnings etc. in the <code>R CMD check</code> output,</li>
-<li>installs the package.</li>
-</ul><p><img src="images/r-cmd-check.png" width="50%"></p>
+<p>This workflow includes the following activities:</p>
+<ol style="list-style-type: decimal"><li>Build an R package.</li>
+<li>Run <code>R CMD check</code>.</li>
+<li>Publish unit test summary.</li>
+<li>Catch any notes, warnings etc. in the <code>R CMD check</code> output.</li>
+<li>Install the package.</li>
+</ol><p><img src="images/r-cmd-check.png" width="50%"></p>
 </div>
 <div class="section level2">
 <h2 id="gitleaksyaml"><a href="./.github/workflows/gitleaks.yaml"><code>gitleaks.yaml</code></a><a class="anchor" aria-label="anchor" href="#gitleaksyaml"></a></h2>
-<p>This workflow runs <a href="https://github.com/zricethezav/gitleaks" class="external-link"><code>gitleaks</code></a> on the repo to discover any secrets that might have been committed.</p>
+<p>This workflow runs <a href="https://github.com/zricethezav/gitleaks" class="external-link"><code>gitleaks</code></a> on the repo to discover any secrets that might have been hardcoded.</p>
 <p><img src="images/gitleaks.png" width="50%"></p>
-<p>Additionally, it runs <a href="https://github.com/insightsengineering/presidio-cli" class="external-link"><code>presidio-cli</code></a> to find any personally identifiable information within the <code>git</code> repo.</p>
+<p>Additionally, it runs <a href="https://github.com/insightsengineering/presidio-cli" class="external-link"><code>presidio-cli</code></a> to find any personally identifiable information (PII) within the <code>git</code> repo.</p>
 <p><img src="images/presidio.png" width="50%"></p>
 </div>
 <div class="section level2">
@@ -102,7 +96,7 @@
 </div>
 <div class="section level2">
 <h2 id="linksyaml"><a href="./.github/workflows/links.yaml"><code>links.yaml</code></a><a class="anchor" aria-label="anchor" href="#linksyaml"></a></h2>
-<p>This workflow checks whether URLs embedded in code and documentation are valid. This workflow uses <a href="https://github.com/lycheeverse/lychee" class="external-link"><code>lychee</code></a> to detect broken links. Occasionally this check will detect false positives of strings that look like URLs. To remedy, please add this false positive to the <code>.lycheeignore</code> file.</p>
+<p>This workflow checks whether URLs embedded in code and documentation are valid. This workflow uses <a href="https://github.com/lycheeverse/lychee" class="external-link"><code>lychee</code></a> to detect broken links. Occasionally, this check will detect false positives of strings that look like URLs. To remedy, please add this false positive to the <code>.lycheeignore</code> file.</p>
 <p><img src="images/links.png" width="50%"></p>
 </div>
 <div class="section level2">
@@ -112,7 +106,7 @@
 </div>
 <div class="section level2">
 <h2 id="pkgdownyaml"><a href="./.github/workflows/pkgdown.yaml"><code>pkgdown.yaml</code></a><a class="anchor" aria-label="anchor" href="#pkgdownyaml"></a></h2>
-<p>Documentation for the R package is generated via this workflow. This workflow uses the <a href="https://pkgdown.r-lib.org/" class="external-link"><code>pkgdown</code></a> framework to generate documentation in HTML, and the HTML pages are deployed to the <code>gh-pages</code> branch.</p>
+<p>Documentation for the R package is generated via this workflow. This workflow uses the <a href="https://pkgdown.r-lib.org/" class="external-link"><code>pkgdown</code></a> framework to generate documentation in HTML, and the HTML pages are then deployed to the <code>gh-pages</code> branch.</p>
 <p>Moreover, an additional <code>Versions</code> dropdown is generated via the GitHub Action, so that the end user can view multiple versions of the documentation for the package.</p>
 <p><img src="images/pkgdown.png" width="30%"></p>
 </div>
@@ -128,7 +122,7 @@
 </div>
 <div class="section level2">
 <h2 id="spellingyaml"><a href="./.github/workflows/spelling.yaml"><code>spelling.yaml</code></a><a class="anchor" aria-label="anchor" href="#spellingyaml"></a></h2>
-<p>Spellchecks are performed by this workflow, and the <a href="https://docs.ropensci.org/spelling/" class="external-link"><code>spelling</code></a> R package is used to detect spelling mistakes. In the <code>inst/WORDLIST</code> file, you can add words and or acronyms that you want the spell check to ignore.</p>
+<p>Spellchecks are performed by this workflow, and the <a href="https://docs.ropensci.org/spelling/" class="external-link"><code>spelling</code></a> R package is used to detect spelling mistakes. In the <code>inst/WORDLIST</code> file, you can add words and/or acronyms that you want the spell check to ignore.</p>
 <p><img src="images/spellcheck.png" width="80%"></p>
 </div>
 <div class="section level2">
