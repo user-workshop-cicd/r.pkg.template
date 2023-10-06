@@ -75,6 +75,7 @@ jobs:
           steps.rc-tag.outputs.is-rc-tag == 'false' ||
             inputs.create-rc-releases == true
         run: |
+          Sys.setenv(GITHUB_PAT_GITHUB_COM = "${{ steps.github-token.outputs.token }}")
           usethis::use_github_release(publish = TRUE)
         working-directory: ${{ inputs.package-subdirectory }}
         shell: Rscript {0}
