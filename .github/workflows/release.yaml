@@ -35,6 +35,8 @@ jobs:
     if: "! contains(github.event.commits[0].message, '[skip release]')"
     permissions:
       contents: write
+    container:
+      image: ghcr.io/insightsengineering/rstudio_4.3.1_bioc_3.17:latest
     steps:
       - name: Setup token 🔑
         id: github-token
@@ -69,18 +71,20 @@ jobs:
         shell: bash
 
       - name: Generate Changelog 📜
-        run: |
-          RELEASE_VERSION=$(awk -F: '/Version:/{gsub(/[ ]+/,"") ; print $2}' DESCRIPTION)
-          REPOSITORY_NAME="${{ github.event.repository.name }}"
-          (awk "/^#+.*${REPOSITORY_NAME//./\.}.*${RELEASE_VERSION//./\.}$/{flag=1;next}/^#+.*${REPOSITORY_NAME//./\.}.*/{flag=0}flag" NEWS.md | grep -v "^$" || echo "* ${RELEASE_VERSION}") > RELEASE_BODY.txt
-        working-directory: ${{ inputs.package-subdirectory }}
-
-      - name: Create release 🌟
         if: >-
           steps.rc-tag.outputs.is-rc-tag == 'false' ||
             inputs.create-rc-releases == true
-        uses: softprops/action-gh-release@v1
-        with:
-          body_path: ${{ inputs.package-subdirectory }}/RELEASE_BODY.txt
-          token: ${{ steps.github-token.outputs.token }}
-          generate_release_notes: true
+        run: |
+          usethis::use_github_release(publish = TRUE)
+        working-directory: ${{ inputs.package-subdirectory }}
+        shell: Rscript {0}
+
+      # - name: Create release 🌟
+      #   if: >-
+      #     steps.rc-tag.outputs.is-rc-tag == 'false' ||
+      #       inputs.create-rc-releases == true
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     body_path: ${{ inputs.package-subdirectory }}/RELEASE_BODY.txt
+      #     token: ${{ steps.github-token.outputs.token }}
+      #     generate_release_notes: true
