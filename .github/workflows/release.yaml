@@ -68,6 +68,7 @@ jobs:
           else
             echo "is-rc-tag=false" >> $GITHUB_OUTPUT
           fi
+          git checkout -b branch-$current_tag
         shell: bash
 
       - name: Generate Changelog 📜
