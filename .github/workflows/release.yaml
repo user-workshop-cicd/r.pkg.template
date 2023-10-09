@@ -54,8 +54,6 @@ jobs:
 
       - name: Checkout repo 🛎
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 5
 
       - name: Get branch names 🌿
         id: branch-name
@@ -74,6 +72,7 @@ jobs:
           fi
           git config --global --add safe.directory $(pwd)
           git checkout main || true
+          git fetch origin main || true
           git pull origin main || true
         shell: bash
 
