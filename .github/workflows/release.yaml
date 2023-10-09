@@ -54,6 +54,8 @@ jobs:
 
       - name: Checkout repo 🛎
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 5
 
       - name: Get branch names 🌿
         id: branch-name
