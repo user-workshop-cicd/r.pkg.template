@@ -5,6 +5,8 @@ on:
   push:
     tags:
       - "v*"
+    branches:
+      - main
   workflow_call:
     secrets:
       REPO_GITHUB_TOKEN:
@@ -68,8 +70,9 @@ jobs:
           else
             echo "is-rc-tag=false" >> $GITHUB_OUTPUT
           fi
-          # git config --global --add safe.directory $(pwd)
-          # git checkout -b branch-$current_tag
+          git config --global --add safe.directory $(pwd)
+          git checkout main || true
+          git pull origin main || true
         shell: bash
 
       - name: Generate Changelog 📜
