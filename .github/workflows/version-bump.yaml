@@ -63,7 +63,8 @@ jobs:
 
       - name: Bump version in DESCRIPTION 📜
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || inputs.vbump-after-release == true }}
-        run: desc::desc_bump_version("dev", normalize = TRUE)
+        # run: desc::desc_bump_version("dev", normalize = TRUE)
+        run: usethis::use_version(which = "dev", push = FALSE)
         shell: Rscript {0}
         working-directory: ${{ inputs.package-subdirectory }}
 
