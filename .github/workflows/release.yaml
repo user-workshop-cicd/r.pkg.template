@@ -76,6 +76,7 @@ jobs:
           git checkout main || true
           git fetch origin main || true
           git pull origin main || true
+          git remote -v
         shell: bash
 
       - name: Generate Changelog 📜
