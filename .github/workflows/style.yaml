@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - test-branch-walkowif
   pull_request:
     types:
       - opened
@@ -47,6 +48,11 @@ jobs:
         with:
           path: ${{ github.event.repository.name }}
           fetch-depth: 0
+
+      - name: Test
+        run: |
+          R -e 'packageVersion("mmrm")'
+        shell: bash
 
       - name: Get branch names 🌿
         if: inputs.auto-update
