@@ -51,8 +51,7 @@ jobs:
 
       - name: Test
         run: |
-          R -e 'packageVersion("mmrm")'
-          pdflatex --version
+          R -e 'packageVersion("tern")'
         shell: bash
 
       - name: Get branch names 🌿
