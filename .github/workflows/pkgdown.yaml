@@ -188,6 +188,11 @@ jobs:
           run-system-dependencies: ${{ inputs.install-system-dependencies }}
           direction: ${{ inputs.sd-direction }}
 
+      - name: Install tern from CRAN
+        run: |
+          install.packages("tern", repos="https://cloud.r-project.org")
+        shell: Rscript {0}
+
       - name: Install R package 🚧
         run: |
           if (file.exists("renv.lock")) renv::restore()
