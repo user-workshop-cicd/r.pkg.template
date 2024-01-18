@@ -341,6 +341,11 @@ jobs:
         shell: Rscript {0}
         working-directory: ${{ github.event.repository.name }}/${{ inputs.package-subdirectory }}
 
+      - name: Install tern from CRAN
+        run: |
+          install.packages("tern", repos="https://cloud.r-project.org")
+        shell: Rscript {0}
+
       - name: Show session info and installed packages ℹ
         run: |
           sessionInfo()
