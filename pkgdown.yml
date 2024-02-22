@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   hello: hello.html
-last_built: 2024-02-13T16:00Z
+last_built: 2024-02-22T14:16Z
 urls:
   reference: https://insightsengineering.github.io/r.pkg.template/main/reference
   article: https://insightsengineering.github.io/r.pkg.template/main/articles
