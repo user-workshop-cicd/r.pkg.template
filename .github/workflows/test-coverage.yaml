@@ -180,8 +180,19 @@ jobs:
           ref: ${{ steps.branch-name.outputs.head_ref_branch }}
           path: ${{ github.event.repository.name }}
 
+      - name: Normalize inputs ⊳
+        id: normalizer
+        shell: bash
+        run: |
+          echo "publish-coverage-report=${{ inputs.publish-coverage-report }}" >> $GITHUB_OUTPUT
+          if [ "${{ inputs.publish-coverage-report }}" == "" ]
+          then {
+            echo "publish-coverage-report=true" >> $GITHUB_OUTPUT
+          }
+          fi
+
       - name: Restore SD cache 💰
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: sd-${{ runner.os }}-${{ github.event.repository.name }}
           path: ~/.staged.dependencies
@@ -257,7 +268,7 @@ jobs:
 
       - name: Check whether coverage reports exists 💭
         id: check_coverage_reports
-        uses: andstor/file-existence-action@v2
+        uses: andstor/file-existence-action@v3
         with:
           files: >-
             ${{ github.event.repository.name }}/${{ inputs.package-subdirectory }}/coverage.xml,
@@ -271,12 +282,12 @@ jobs:
           path: ${{ github.event.repository.name }}/${{ inputs.package-subdirectory }}/coverage.xml
           threshold: 80
           fail: false
-          publish: ${{ inputs.publish-coverage-report }}
+          publish: ${{ steps.normalizer.outputs.publish-coverage-report }}
           diff: true
         continue-on-error: true
 
       - name: Upload report 🔼
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: |
@@ -312,7 +323,7 @@ jobs:
           path: ${{ github.event.repository.name }}
 
       - name: Restore SD cache 💰
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: sd-${{ runner.os }}-${{ github.event.repository.name }}
           path: ~/.staged.dependencies
@@ -359,7 +370,7 @@ jobs:
         shell: bash
 
       - name: Download coverage report as artifact ⤵️
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: coverage-report
           path: coverage-report
