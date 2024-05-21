@@ -24,14 +24,14 @@ jobs:
 
       - name: Greet people with R in their name
         if: >
-          contains(input.name, 'R') || contains(input.name, 'r')
+          contains(inputs.name, 'R') || contains(inputs.name, 'r')
         run: |
-          cat("Your name contains the letter 'R'. How cool!")
+          cat("Your name (${{ inputs.name }}) contains the letter 'R'. How cool!")
         shell: Rscript {0}
 
       - name: Greet people without R in their name
         if: >
-          !contains(input.name, 'R') && !contains(input.name, 'r')
+          !contains(inputs.name, 'R') && !contains(inputs.name, 'r')
         run: |
-          cat("Your name doesn't contains the letter 'R'. That's great!")
+          cat("Your name (${{ inputs.name }}) doesn't contains the letter 'R'. That's great!")
         shell: Rscript {0}
