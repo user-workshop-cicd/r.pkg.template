@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       inputs.name != 'Octocat'
+    container:
+      image: rocker/r-ubuntu:latest
+
     steps:
       - name: Setup R 🔧
         uses: r-lib/actions/setup-r@v2
