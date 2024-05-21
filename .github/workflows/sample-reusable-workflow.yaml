@@ -7,13 +7,15 @@ on:
       name:
         description: Your name
         required: false
-        default: "Octocat"
+        default: "<name>"
         type: string
 
 jobs:
   greetings:
     name: Greet the user 👋
     runs-on: ubuntu-latest
+    if: >
+      inputs.name != 'Octocat'
     steps:
       - name: Setup R 🔧
         uses: r-lib/actions/setup-r@v2
@@ -33,5 +35,5 @@ jobs:
         if: >
           !contains(inputs.name, 'R') && !contains(inputs.name, 'r')
         run: |
-          cat("Your name (${{ inputs.name }}) doesn't contains the letter 'R'. That's great!")
+          cat("Your name (${{ inputs.name }}) doesn't contain the letter 'R'. That's great!")
         shell: Rscript {0}
