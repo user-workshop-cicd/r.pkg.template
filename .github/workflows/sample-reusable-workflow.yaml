@@ -1,0 +1,39 @@
+---
+name: Sample reusable workflow ♻️
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: Your name
+        required: false
+        default: "<name>"
+        type: string
+
+jobs:
+  greetings:
+    name: Greet the user 👋
+    runs-on: ubuntu-latest
+    if: >
+      inputs.name != 'Octocat'
+    container:
+      image: rocker/r-ubuntu:latest
+
+    steps:
+      - name: Hello world! 💬
+        run: cat(paste0("Hello ${{ inputs.name }}! 👋"))
+        shell: Rscript {0}
+
+      - name: Greet people with R in their name
+        if: >
+          contains(inputs.name, 'R') || contains(inputs.name, 'r')
+        run: |
+          cat("Your name (${{ inputs.name }}) contains the letter 'R'. How cool!")
+        shell: Rscript {0}
+
+      - name: Greet people without R in their name
+        if: >
+          !contains(inputs.name, 'R') && !contains(inputs.name, 'r')
+        run: |
+          cat("Your name (${{ inputs.name }}) doesn't contain the letter 'R'. That's great!")
+        shell: Rscript {0}
